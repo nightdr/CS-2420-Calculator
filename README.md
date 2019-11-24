@@ -1,4 +1,8 @@
 # How to Run
-To run this you to **save your Gradescope and Canvas pages the course** (push Ctrl+S on each page).
+To run this program you need to **save the Gradescope and Canvas html pages for the course** (push Ctrl+S while on each page).
 
-After you have your pages downloaded, you can download the [stand-alone executable](fix-me) (slow but easy to use), [zipped executable with dependencies](fix-me) (fast but contains dist folder), or run the [python script](fix-me).
+After you have the pages downloaded, you can download the [stand-alone executable](fix-me) (slow but one file), [zipped executable with dependencies](fix-me) (fast but .exe is in folder), or run the [python script](fix-me).
+
+Once the program is run, it will ask for your Gradescope html file then for your Canvas html file. After getting your files, it will print your current weighted grade in the course and offer to calculate a final score necessary for a wanted grade.
+
+Feel free to let me know about any questions or concerns on Piazza, enjoy!
