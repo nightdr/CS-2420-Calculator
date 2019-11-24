@@ -43,7 +43,7 @@ def calculate_final_score():
             user_percentage = float(user_percentage_array[0])
             # calculate final score needed
             final_needed = (user_percentage - 0.80 * class_percentage) / 0.20
-            print("\nFinal score needed for ", user_percentage, "%: ", final_needed, "%\n", sep="")
+            print("\nFinal score needed for ", user_percentage, "%: ", round(final_needed, 2), "%\n", sep="")
         else:
             print("No percentage found")
 
