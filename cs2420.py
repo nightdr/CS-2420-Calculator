@@ -43,7 +43,7 @@ def calculate_final_score():
             user_percentage = float(user_percentage_array[0])
             # calculate final score needed
             final_needed = (user_percentage - 0.80 * class_percentage) / 0.20
-            print("Final score needed for ", user_percentage, "%: ", final_needed, "%", sep="")
+            print("\nFinal score needed for ", user_percentage, "%: ", final_needed, "%\n", sep="")
         else:
             print("No percentage found")
 
@@ -83,10 +83,12 @@ if __name__ == "__main__":
         grabScores.get_canvas_scores(canvas_document, scores)
 
         class_percentage = calculate_class_percentage()
-        print("Current percentage: ", round(class_percentage, 2), "%", sep="")
+        print("\nCurrent percentage: ", round(class_percentage, 2), "%\n", sep="")
 
         # run final percentage dialog
         calculate_final_score()
 
     else:
         print("Files not selected")
+
+    input("Press enter to end...")
