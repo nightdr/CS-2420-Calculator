@@ -15,7 +15,8 @@ def get_gradescope_scores(html_filepath, score_dict):
         title = project.th.text.lower()
         point_string = project.td.text
 
-        if title != "testassignment - do not submit anything" and point_string != "Submitted":
+        # filters out projects that aren't graded or turned in
+        if len(point_string.split()) == 3:
             # gets percentage from point_string
             # e.g. "90.0 / 100.0" -> split() -> ["90.0", "/", "100.0"] -> 90.0 / 100.0 -> 0.9
             percentage = float(point_string.split()[0]) / float(point_string.split()[2])
