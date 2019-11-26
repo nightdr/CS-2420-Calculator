@@ -16,21 +16,38 @@ def get_gradescope_scores(html_filepath, score_dict):
         point_string = project.td.text
 
         # filters out projects that aren't graded or turned in
-        if len(point_string.split()) == 3:
-            # gets percentage from point_string
-            # e.g. "90.0 / 100.0" -> split() -> ["90.0", "/", "100.0"] -> 90.0 / 100.0 -> 0.9
-            percentage = float(point_string.split()[0]) / float(point_string.split()[2])
+        # gets percentage from point_string
+        percentage = 0
 
-            # add percentages to their respective categories
-            if "midterm" in title:
-                score_dict["midterms"].append(percentage)
-            elif "lab" in title:
-                if "challenge" in title:
-                    score_dict["programming challenges"].append(percentage)
-                else:
-                    score_dict["participation"].append(percentage)
+        # don't use test assignment
+        if title.lower() == "testassignment - do not submit anything":
+            continue
+        else:
+            # if there is a score
+            if len(point_string.split()) == 3:
+                # e.g. "90.0 / 100.0" -> split() -> ["90.0", "/", "100.0"] -> 90.0 / 100.0 -> 0.9
+                percentage = float(point_string.split()[0]) / float(point_string.split()[2])
+
+            elif point_string.lower() == "no submission":
+                time_remaining = project.find_all("span", {"class": "submissionTimeChart--timeRemaining"})
+                # if project has time left to submit then skip it
+                if len(time_remaining) > 0:
+                    continue
+
+            # if project is submitted without being graded then skip it
             else:
-                score_dict["assignments"].append(percentage)
+                continue
+
+        # add percentages to their respective categories
+        if "midterm" in title:
+            score_dict["midterms"].append(percentage)
+        elif "lab" in title:
+            if "challenge" in title:
+                score_dict["programming challenges"].append(percentage)
+            else:
+                score_dict["participation"].append(percentage)
+        else:
+            score_dict["assignments"].append(percentage)
 
 
 def get_canvas_scores(html_filepath, score_dict):
