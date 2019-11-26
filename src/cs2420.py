@@ -21,10 +21,10 @@ def calculate_class_percentage():
     # compute weighted percentage
     for key in scores:
         # if there are scores recorded
-        if len(scores[key]) != 0:
+        if len(scores[key]) != 0 and scores[key][1] != 0:
             weight_total += weights[key]
             # add weighted percentage (weight * average percentage) to class_percentage
-            class_percentage += weights[key] * (sum(scores[key]) / len(scores[key]))
+            class_percentage += weights[key] * (scores[key][0] / scores[key][1])
 
     # divide class percentage by used weights
     class_percentage /= weight_total
@@ -49,12 +49,12 @@ def calculate_final_score():
 
 
 scores = {
-    "participation": [],
-    "programming challenges": [],
-    "homework": [],
-    "midterms": [],
-    "final": [],
-    "assignments": [],
+    "participation": [0, 0],
+    "programming challenges": [0, 0],
+    "homework": [0, 0],
+    "midterms": [0, 0],
+    "final": [0, 0],
+    "assignments": [0, 0],
 }
 
 weights = {
