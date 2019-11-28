@@ -22,7 +22,6 @@ def get_total_points(project_name):
         return 0
 
 
-
 def get_gradescope_scores(html_filepath, score_dict):
     with open(html_filepath, "r") as f:
         soup = BeautifulSoup(f, "html.parser")
