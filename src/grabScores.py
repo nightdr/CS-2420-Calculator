@@ -6,15 +6,23 @@ from bs4 import BeautifulSoup
 # necessary since gradescope lists "no submission" on missing assignments
 def get_total_points(project_name):
     point_dict = {
-        "lab07-circularqueue programming challenge": 20,
+        "a10-pacman": 100,
+        "a09-heap": 100,
+        "a08-hashing": 100,
+        "a07-bst-spell-checker": 100,
+        "a6 - doubly linked list": 100,
         "assignment5-sortinganalysis": 100,
         "assignment4-anagrams": 100,
-        "lab04-sorting programming challenge": 10,
         "assignment03-sudoku": 100,
         "assignment 02-setonarraylist": 20,
         "assignment 01-matrix implementation": 10,
+        "lab12-graph-pc": 20,
+        "lab10-map-pc": 20,
+        "lab07-circularqueue programming challenge": 20,
+        "lab04-sorting programming challenge": 10,
         "midterm 1": 100,
-        "midterm 2": 100
+        "midterm 2": 100,
+        "final exam": 100
     }
     if project_name in point_dict:
         return point_dict[project_name]
@@ -65,6 +73,9 @@ def get_gradescope_scores(html_filepath, score_dict):
             if "midterm" in title:
                 score_dict["midterms"][0] += earned_points
                 score_dict["midterms"][1] += total_points
+            elif title == "final exam":
+                score_dict["final"][0] += earned_points
+                score_dict["final"][1] += total_points
             elif "lab" in title:
                 if "challenge" in title:
                     score_dict["programming challenges"][0] += earned_points

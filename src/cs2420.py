@@ -1,5 +1,4 @@
 import grabScores
-import re
 from time import sleep
 import tkinter as tk
 from tkinter import filedialog
@@ -31,21 +30,6 @@ def calculate_class_percentage():
     class_percentage *= 100
 
     return class_percentage
-
-
-def calculate_final_score():
-    calculate_boolean = input("Calculate percentage needed on final for grade? (Y or N)\n")
-    if calculate_boolean.lower() == "y":
-        # get desired percentage
-        user_percentage_array = re.findall("\d+", input("Desired percentage: \n"))
-        # if number found in input
-        if len(user_percentage_array) > 0:
-            user_percentage = float(user_percentage_array[0])
-            # calculate final score needed
-            final_needed = (user_percentage - 0.80 * class_percentage) / 0.20
-            print("\nFinal score needed for ", user_percentage, "%: ", round(final_needed, 2), "%\n", sep="")
-        else:
-            print("No percentage found")
 
 
 scores = {
@@ -84,9 +68,6 @@ if __name__ == "__main__":
 
         class_percentage = calculate_class_percentage()
         print("\nCurrent percentage: ", round(class_percentage, 2), "%\n", sep="")
-
-        # run final percentage dialog
-        calculate_final_score()
 
     else:
         print("Files not selected")
